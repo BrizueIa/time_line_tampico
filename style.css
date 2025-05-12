@@ -333,6 +333,50 @@ body {
   transform: scale(1.05);
 }
 
+/* Botón de ver más */
+.ver-mas-button {
+  display: inline-block;
+  background: transparent;
+  color: #00e5ff;
+  text-decoration: none;
+  padding: 4px 8px;
+  border-radius: 4px;
+  margin-top: 4px;
+  font-size: 0.85rem;
+  font-weight: 400;
+  transition: all 0.2s ease;
+  border: 1px solid #00bcd4;
+}
+
+.ver-mas-button::after {
+  content: ' →';
+  opacity: 0;
+  margin-left: -10px;
+  transition: all 0.2s ease;
+}
+
+.ver-mas-button:hover {
+  background-color: rgba(0, 229, 255, 0.1);
+  transform: translateX(2px);
+}
+
+.ver-mas-button:hover::after {
+  opacity: 1;
+  margin-left: 2px;
+}
+
+.ver-mas-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 229, 255, 0.2);
+}
+
+@media screen and (max-width: 768px) {
+  .ver-mas-button {
+    font-size: 0.8rem;
+    padding: 3px 6px;
+  }
+}
+
 /* Contenedor de información adicional */
 .info-adicional {
   display: none;
@@ -365,6 +409,49 @@ body {
   line-height: 1.4;
   margin-bottom: 10px;
   color: #e0e0e0;
+}
+
+/* Estilo específico para el botón Ver más */
+.info-adicional .ver-mas-button {
+  display: inline;
+  background: transparent;
+  color: #00e5ff;
+  text-decoration: underline;
+  padding: 0;
+  border-radius: 0;
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: normal;
+  transition: color 0.2s ease;
+  border: none;
+  width: auto;
+  text-align: left;
+  position: relative; /* Asegura que el botón tenga su propio contexto de apilamiento */
+  z-index: 1; /* Evita que se vea afectado por otros elementos */
+}
+
+.info-adicional .ver-mas-button::after {
+  content: ' →';
+  opacity: 0;
+  margin-left: -8px;
+  transition: all 0.2s ease;
+}
+
+.info-adicional .ver-mas-button:hover {
+  color: #ffffff;
+  background: transparent;
+  transform: none;
+}
+
+.info-adicional .ver-mas-button:hover::after {
+  opacity: 1;
+  margin-left: 2px;
+}
+
+.info-adicional .ver-mas-button:focus {
+  outline: none;
+  box-shadow: none;
+  text-decoration: underline;
 }
 
 /* Diseño móvil */
