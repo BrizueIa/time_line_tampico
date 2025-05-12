@@ -251,9 +251,24 @@ body {
   }
 }
 
-/* Punto de conexión (dot) */
+/* Punto de conexión (línea vertical en móvil) */
 .dot {
-  display: none;
+  display: none;  /* Este es para el punto de la línea vertical */
+}
+
+/* Puntos del carousel */
+.carousel-dots .dot {
+  display: block;  /* Aseguramos que los puntos del carousel siempre sean visibles */
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.carousel-dots .dot.active {
+  background: #00bcd4;
 }
 
 /* Fecha encima de cada tarjeta */
@@ -407,15 +422,34 @@ body {
     transform: translateX(5px);
   }
 
+  .event .carousel {
+    width: 100%;
+    height: 250px;  /* Altura fija para las imágenes en móvil */
+    margin: 0;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .event .carousel-container {
+    height: 100%;
+  }
+
+  .event .carousel-container a {
+    height: 100%;
+  }
+
   .event .imagen {
-    height: 180px;
+    position: absolute;
+    width: 100%;
+    height: 100%;
     margin: 0;
     border-radius: 8px;
     object-fit: cover;
   }
+
   .event h3 {
     font-size: 1.4rem;
-    margin: 0;
+    margin: 10px 0;
     color: #00e5ff;
   }
 
@@ -476,5 +510,19 @@ body {
   .info-button {
     width: 100%;
     margin-top: 8px;
+  }
+
+  .carousel-dots {
+    bottom: 15px;
+    padding: 5px 10px;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
+    z-index: 5;
+  }
+
+  .carousel-dots .dot {
+    width: 6px;
+    height: 6px;
+    margin: 0 4px;
   }
 }
