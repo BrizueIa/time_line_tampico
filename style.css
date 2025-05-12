@@ -9,8 +9,11 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #121212;
   color: #f1f1f1;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow-y: scroll;
   overflow-x: hidden;
-  padding: 50px 20px;
 }
 
 /* Línea de tiempo horizontal */
@@ -31,6 +34,21 @@ body {
   padding: 100px 60px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
+  width: 100%;
+  -ms-overflow-style: none;  /* Para Internet Explorer y Edge */
+  scrollbar-width: none;  /* Para Firefox */
+  position: relative;
+  top: 50vh;
+  transform: translateY(-50%);
+  touch-action: pan-x pan-y pinch-zoom;
+  overscroll-behavior-x: contain;
+  cursor: grab;
+  user-select: none;
+}
+
+/* Ocultar scrollbar para Chrome, Safari y Opera */
+.scroll-wrapper::-webkit-scrollbar {
+  display: none;
 }
 
 /* Evento individual */
