@@ -78,12 +78,45 @@ body {
 }
 
 /* Imagen de cada evento */
-.event .imagen {
+.event a {
+  display: block;
   width: 100%;
   height: 60%;
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.event a:hover {
+  transform: scale(1.05);
+}
+
+.event a::before {
+  content: '🔎 Ver en mapa';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 188, 212, 0.9);
+  color: white;
+  padding: 8px;
+  text-align: center;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+
+.event a:hover::before {
+  transform: translateY(0);
+}
+
+.event .imagen {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   border-radius: 10px;
-  margin-bottom: min(2vh, 20px);
+  transition: transform 0.3s ease;
 }
 
 /* Punto de conexión (dot) */
@@ -151,7 +184,8 @@ body {
     width: 4px;
     height: 100%;
     transform: none;
-  }.scroll-wrapper {
+  }
+  .scroll-wrapper {
     flex-direction: column;
     gap: 30px;
     padding: 20px;
@@ -167,7 +201,8 @@ body {
 
   .scroll-wrapper::-webkit-scrollbar {
     display: none;
-  }  .event {
+  }
+  .event {
     width: calc(100% - 30px);
     height: auto;
     min-height: auto;
@@ -205,7 +240,7 @@ body {
     margin: 0;
     line-height: 1.4;
   }
-    .date {
+  .date {
     position: absolute;
     top: -30px;
     left: -20px;
@@ -223,7 +258,7 @@ body {
     text-align: center;
   }
 
-  /* Puntos de conexión para la línea vertical */  
+  /* Puntos de conexión para la línea vertical */
   .dot {
     display: block;
     position: absolute;
