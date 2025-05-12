@@ -14,4 +14,26 @@ document.addEventListener('DOMContentLoaded', () => {
         const delta = e.shiftKey ? e.deltaX : e.deltaY;
         slider.scrollLeft += delta;
     }, { passive: false });
+
+    // Manejador para botones de información
+    document.querySelectorAll('.info-button').forEach(button => {
+        button.addEventListener('click', () => {
+            const infoAdicional = button.nextElementSibling;
+            const estaVisible = infoAdicional.classList.contains('visible');
+            
+            // Cerrar todos los paneles de información abiertos
+            document.querySelectorAll('.info-adicional.visible').forEach(panel => {
+                panel.classList.remove('visible');
+                panel.previousElementSibling.textContent = 'Más información';
+            });
+            
+            // Si el panel clickeado no estaba visible, mostrarlo
+            if (!estaVisible) {
+                infoAdicional.classList.add('visible');
+                button.textContent = 'Menos información';
+            } else {
+                button.textContent = 'Más información';
+            }
+        });
+    });
 });
