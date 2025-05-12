@@ -15,7 +15,7 @@ body {
   overflow: hidden;
 }
 
-/* Línea de tiempo horizontal */
+/* Línea de tiempo */
 .timeline-line {
   position: fixed;
   top: 50%;
@@ -74,7 +74,6 @@ body {
 
 .event:hover {
   transform: scale(1.02);
-  box-shadow: 0 12px 24px rgba(0, 188, 212, 0.5);
 }
 
 /* Imagen de cada evento */
@@ -133,4 +132,73 @@ body {
   font-size: clamp(1rem, 2vw, 1.2rem);
   line-height: 1.5;
   color: #e0e0e0;
+}
+
+/* Diseño móvil */
+@media (max-width: 768px) {
+  body {
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  .timeline-line {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 4px;
+    height: auto;
+    transform: translateX(-50%);
+  }
+
+  .scroll-wrapper {
+    flex-direction: column;
+    gap: 60px;
+    padding: 40px 20px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: auto;
+    width: 100%;
+    top: 0;
+    transform: none;
+  }
+
+  .scroll-wrapper::-webkit-scrollbar {
+    width: 12px;
+    height: auto;
+  }
+
+  .event {
+    width: 90%;
+    height: auto;
+    min-height: auto;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  .event .imagen {
+    height: 200px;
+  }
+
+  .date {
+    top: 20px;
+    right: -20px;
+    left: auto;
+    transform: none;
+  }
+
+  /* Puntos de conexión para la línea vertical */
+  .dot {
+    display: block;
+    position: absolute;
+    left: -32px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 12px;
+    height: 12px;
+    background: #00bcd4;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    z-index: 2;
+  }
 }

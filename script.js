@@ -1,11 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
     const slider = document.querySelector('.scroll-wrapper');
     
-    // Convertir scroll vertical a horizontal
+    // Función para detectar si es dispositivo móvil
+    const isMobile = () => window.innerWidth <= 768;
+    
+    // Manejador de scroll
     slider.addEventListener('wheel', (e) => {
-        e.preventDefault();
+        // En móvil, permitir scroll vertical normal
+        if (isMobile()) return;
         
-        // Si se presiona shift, usar deltaX, si no, usar deltaY
+        // En desktop, convertir scroll vertical a horizontal
+        e.preventDefault();
         const delta = e.shiftKey ? e.deltaX : e.deltaY;
         slider.scrollLeft += delta;
     }, { passive: false });
