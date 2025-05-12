@@ -12,8 +12,7 @@ body {
   min-height: 100vh;
   margin: 0;
   padding: 0;
-  overflow-y: scroll;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 /* Línea de tiempo horizontal */
@@ -30,71 +29,67 @@ body {
 /* Contenedor scrollable */
 .scroll-wrapper {
   display: flex;
-  gap: 80px;
-  padding: 100px 60px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
+  gap: min(8vw, 80px);
+  padding: min(10vh, 100px) min(6vw, 60px);
+  overflow-x: scroll;
   width: 100%;
-  -ms-overflow-style: none;  /* Para Internet Explorer y Edge */
-  scrollbar-width: none;  /* Para Firefox */
   position: relative;
   top: 50vh;
   transform: translateY(-50%);
-  touch-action: pan-x pan-y pinch-zoom;
-  overscroll-behavior-x: contain;
-  cursor: grab;
-  user-select: none;
+  scrollbar-width: thin;
+  scrollbar-color: #00bcd4 #1e1e1e;
 }
 
-/* Ocultar scrollbar para Chrome, Safari y Opera */
+/* Estilo para la barra de scroll en Chrome/Safari */
 .scroll-wrapper::-webkit-scrollbar {
-  display: none;
+  height: 12px;
+}
+
+.scroll-wrapper::-webkit-scrollbar-track {
+  background: #1e1e1e;
+  border-radius: 6px;
+}
+
+.scroll-wrapper::-webkit-scrollbar-thumb {
+  background-color: #00bcd4;
+  border-radius: 6px;
+  border: 3px solid #1e1e1e;
 }
 
 /* Evento individual */
 .event {
   position: relative;
   flex: 0 0 auto;
-  scroll-snap-align: center;
   background-color: #1e1e1e;
-  padding: 20px;
+  padding: min(3vh, 30px);
   border-radius: 16px;
-  width: 300px;
+  width: min(90vw, 800px);
+  height: min(80vh, 800px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .event:hover {
-  transform: scale(1.05);
+  transform: scale(1.02);
   box-shadow: 0 12px 24px rgba(0, 188, 212, 0.5);
 }
 
 /* Imagen de cada evento */
 .event .imagen {
   width: 100%;
-  height: 180px;
+  height: 60%;
   object-fit: cover;
   border-radius: 10px;
-  margin-bottom: 10px;
+  margin-bottom: min(2vh, 20px);
 }
 
 /* Punto de conexión (dot) */
 .dot {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #00bcd4;
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  z-index: 1;
-  border: 2px solid #fff;
-}
-.dot {
   display: none;
 }
-
 
 /* Fecha encima de cada tarjeta */
 .date {
@@ -104,9 +99,9 @@ body {
   transform: translateX(-50%);
   background-color: #00bcd4;
   color: #121212;
-  padding: 6px 12px;
+  padding: min(1.5vh, 15px) min(2vw, 20px);
   border-radius: 20px;
-  font-size: 0.9em;
+  font-size: clamp(1rem, 2vw, 1.2rem);
   font-weight: bold;
   white-space: nowrap;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
@@ -129,13 +124,13 @@ body {
 
 /* Estilos para texto */
 .event h3 {
-  font-size: 1.2rem;
-  margin-bottom: 8px;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  margin-bottom: min(2vh, 20px);
   color: #00e5ff;
 }
 
 .event p {
-  font-size: 0.95rem;
-  line-height: 1.4;
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  line-height: 1.5;
   color: #e0e0e0;
 }
