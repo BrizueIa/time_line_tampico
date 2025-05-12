@@ -430,6 +430,10 @@ body {
   z-index: 1; /* Evita que se vea afectado por otros elementos */
 }
 
+.info-adicional .ver-mas-button::before {
+  content: none;
+}
+
 .info-adicional .ver-mas-button::after {
   content: ' →';
   opacity: 0;
