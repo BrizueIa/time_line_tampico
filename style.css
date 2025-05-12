@@ -12,10 +12,11 @@ body {
   min-height: 100vh;
   margin: 0;
   padding: 0;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
-/* Línea de tiempo */
+/* Línea de tiempo - Estilo base para escritorio */
 .timeline-line {
   position: fixed;
   top: 50%;
@@ -135,70 +136,116 @@ body {
 }
 
 /* Diseño móvil */
-@media (max-width: 768px) {
+@media screen and (max-width: 768px), (orientation: portrait) {
   body {
     overflow-y: auto;
     overflow-x: hidden;
+    padding: 0;
+    height: auto;
   }
-
   .timeline-line {
     position: fixed;
     top: 0;
     bottom: 0;
-    left: 50%;
+    left: 45px;
     width: 4px;
-    height: auto;
-    transform: translateX(-50%);
-  }
-
-  .scroll-wrapper {
+    height: 100%;
+    transform: none;
+  }.scroll-wrapper {
     flex-direction: column;
-    gap: 60px;
-    padding: 40px 20px;
-    overflow-y: auto;
+    gap: 30px;
+    padding: 20px;
+    padding-left: 60px;
+    overflow-y: visible;
     overflow-x: hidden;
     height: auto;
     width: 100%;
-    top: 0;
+    position: static;
     transform: none;
+    margin-top: 20px;
   }
 
   .scroll-wrapper::-webkit-scrollbar {
-    width: 12px;
-    height: auto;
-  }
-
-  .event {
-    width: 90%;
+    display: none;
+  }  .event {
+    width: calc(100% - 30px);
     height: auto;
     min-height: auto;
-    margin: 0 auto;
-    padding: 20px;
+    margin: 0;
+    margin-left: auto;
+    margin-top: 40px;
+    padding: 15px;
+    background: #1e1e1e;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .event:hover {
+    transform: translateX(5px);
   }
 
   .event .imagen {
-    height: 200px;
+    height: 180px;
+    margin: 0;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+  .event h3 {
+    font-size: 1.4rem;
+    margin: 0;
+    color: #00e5ff;
   }
 
-  .date {
-    top: 20px;
-    right: -20px;
-    left: auto;
+  .event p {
+    font-size: 1rem;
+    margin: 0;
+    line-height: 1.4;
+  }
+    .date {
+    position: absolute;
+    top: -30px;
+    left: -20px;
     transform: none;
+    font-size: 0.9rem;
+    padding: 6px 12px;
+    background: #1e1e1e;
+    color: #00bcd4;
+    border: 2px solid #00bcd4;
+    border-radius: 4px;
+    font-weight: bold;
+    z-index: 2;
+    white-space: nowrap;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    text-align: center;
   }
 
-  /* Puntos de conexión para la línea vertical */
+  /* Puntos de conexión para la línea vertical */  
   .dot {
     display: block;
     position: absolute;
-    left: -32px;
+    left: -47px;
     top: 50%;
     transform: translateY(-50%);
     width: 12px;
     height: 12px;
-    background: #00bcd4;
-    border: 2px solid #fff;
+    background: #1e1e1e;
+    border: 3px solid #00bcd4;
     border-radius: 50%;
+  }
+
+  .dot::before {
+    content: '';
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    width: 32px;
+    height: 2px;
+    background: #00bcd4;
+    transform: translateY(-50%);
     z-index: 2;
   }
 }
