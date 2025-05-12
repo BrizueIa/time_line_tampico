@@ -36,4 +36,68 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // Funcionalidad del carrusel
+    document.querySelectorAll('.carousel').forEach(carousel => {
+        const images = carousel.querySelectorAll('.imagen');
+        const dots = carousel.querySelectorAll('.dot');
+        const prevButton = carousel.querySelector('.prev');
+        const nextButton = carousel.querySelector('.next');
+        let currentIndex = 0;
+
+        function showImage(index) {
+            images.forEach(img => {
+                img.style.opacity = '0';
+                img.style.transform = 'translateX(100%)';
+            });
+            dots.forEach(dot => dot.classList.remove('active'));
+
+            const targetImage = images[index];
+            targetImage.style.opacity = '1';
+            targetImage.style.transform = 'translateX(0)';
+            dots[index].classList.add('active');
+        }
+
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % images.length;
+            showImage(currentIndex);
+        }
+
+        function prevImage() {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            showImage(currentIndex);
+        }
+
+        // Event listeners para los botones
+        nextButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            nextImage();
+        });
+
+        prevButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            prevImage();
+        });
+
+        // Event listeners para los dots
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                currentIndex = index;
+                showImage(currentIndex);
+            });
+        });
+
+        // Autoplay del carrusel
+        let autoplayInterval = setInterval(nextImage, 5000);
+
+        // Pausar autoplay cuando el mouse está sobre el carrusel
+        carousel.addEventListener('mouseenter', () => {
+            clearInterval(autoplayInterval);
+        });
+
+        // Reanudar autoplay cuando el mouse sale del carrusel
+        carousel.addEventListener('mouseleave', () => {
+            autoplayInterval = setInterval(nextImage, 5000);
+        });
+    });
 });

@@ -119,6 +119,138 @@ body {
   transition: transform 0.3s ease;
 }
 
+/* Estilos del carrusel */
+.carousel {
+  position: relative;
+  width: 100%;
+  height: 60%;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.carousel-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.carousel-container a {
+  width: 100%;
+  height: 100%;
+  display: block;
+  position: relative;
+  text-decoration: none;
+}
+
+.carousel-container a::before {
+  content: '🔎 Ver en mapa';
+  position: absolute;
+  bottom: 50px; /* Ajustado para estar por encima de los dots */
+  left: 50%;
+  transform: translateX(-50%) translateY(100%);
+  background: rgba(0, 188, 212, 0.9);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 20px;
+  text-align: center;
+  opacity: 0;
+  transition: all 0.3s ease;
+  z-index: 3;
+  pointer-events: none; /* Evita que el texto interfiera con el hover */
+  white-space: nowrap;
+}
+
+.carousel-container a:hover::before {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.carousel .imagen {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.5s ease;
+  opacity: 0;
+}
+
+.carousel .imagen[data-index="0"] {
+  opacity: 1;
+}
+
+.carousel-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 4;
+  font-size: 18px;
+  transition: background-color 0.3s ease;
+}
+
+.carousel-button:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.carousel-button.prev {
+  left: 10px;
+}
+
+.carousel-button.next {
+  right: 10px;
+}
+
+.carousel-dots {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 4;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 5px 10px;
+  border-radius: 15px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.dot.active {
+  background: #00bcd4;
+}
+
+/* Ajustes responsive */
+@media screen and (max-width: 768px) {
+  .carousel-container a::before {
+    bottom: 40px;
+    font-size: 0.9rem;
+    padding: 8px 16px;
+  }
+  
+  .carousel-dots {
+    bottom: 8px;
+    padding: 4px 8px;
+  }
+  
+  .dot {
+    width: 6px;
+    height: 6px;
+  }
+}
+
 /* Punto de conexión (dot) */
 .dot {
   display: none;
